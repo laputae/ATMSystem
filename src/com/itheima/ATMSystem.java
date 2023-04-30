@@ -60,13 +60,54 @@ public class ATMSystem {
                         //登录成功
                         System.out.println("恭喜您，"+acc.getUserName()+"先生/女士进入系统，您的卡号是："+acc.getCardId());
                         //查询，转账，取款
+                        showUserCommand(sc);
                         //break;
                     } else {
                         System.out.println("您输入的密码有误");
                     }
                 }
             } else {
-                System.out.println("系统中不存在该卡号");
+                System.out.println("对不起，系统中不存在该卡号");
+            }
+        }
+    }
+
+    private static void showUserCommand(Scanner sc) {
+        while (true) {
+            System.out.println("================用户操作页================");
+            System.out.println("1、查询账户");
+            System.out.println("2、存款");
+            System.out.println("3、取款");
+            System.out.println("4、转账");
+            System.out.println("5、修改密码");
+            System.out.println("6、退出");
+            System.out.println("7、注销账户");
+            System.out.println("请选择：");
+            int command=sc.nextInt();
+            switch (command) {
+                case 1:
+                    //查询
+                    break;
+                case 2:
+                    //存款
+                    break;
+                case 3:
+                    //取款
+                    break;
+                case 4:
+                    //转账
+                    break;
+                case 5:
+                    //修改密码
+                    break;
+                case 6:
+                    //退出
+                    break;
+                case 7:
+                    //注销账户
+                    break;
+                default:
+                    System.out.println("您输入的操作不正确");
             }
         }
     }
