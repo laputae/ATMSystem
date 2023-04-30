@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class ATMSystem {
     public static void main(String[] args){
         ArrayList<Account>accounts=new ArrayList<>();
@@ -17,6 +18,7 @@ public class ATMSystem {
             switch (command){
                 case 1:
                     //用户登录
+                    login(accounts,sc);
                     break;
 
                 case 2:
@@ -26,6 +28,45 @@ public class ATMSystem {
 
                 default:
                     System.out.println("您输入的操作命令不存在");
+            }
+        }
+    }
+
+    /**
+     * 登录功能
+     * @param accounts 全部账户的集合
+     * @param sc 扫描器
+     */
+    private static void login(ArrayList<Account> accounts, Scanner sc) {
+        System.out.println("===============系统登陆操作===============");
+        //判断账户集合中是否存在账户，如果不存在账户，不能进行登陆操作
+        if(accounts.size()==0){
+            System.out.printf("对比起，当前系统中无账户，请先开通账户，再来登录");
+            return;
+        }
+
+        while (true) {
+            //登陆操作
+            System.out.println("请您输入卡号：");
+            String cardId=sc.next();
+            //根据卡号判断账户集合中是否存在账户对象
+            Account acc=getAccountByCardId(cardId,accounts);
+            if(acc!=null){
+                while (true) {
+                    System.out.println("请您输入密码：");
+                    String passWord=sc.next();
+                    //判断当前用户的密码与输入的密码是否一致
+                    if(acc.getPassWord().equals(passWord)){
+                        //登录成功
+                        System.out.println("恭喜您，"+acc.getUserName()+"先生/女士进入系统，您的卡号是："+acc.getCardId());
+                        //查询，转账，取款
+                        //break;
+                    } else {
+                        System.out.println("您输入的密码有误");
+                    }
+                }
+            } else {
+                System.out.println("系统中不存在该卡号");
             }
         }
     }
