@@ -62,6 +62,7 @@ public class ATMSystem {
                         System.out.println("恭喜您，"+acc.getUserName()+"先生/女士进入系统，您的卡号是："+acc.getCardId());
                         //查询，转账，取款
                         showUserCommand(sc,acc);
+                        return ;
                         //break;
                     } else {
                         System.out.println("您输入的密码有误");
