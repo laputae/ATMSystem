@@ -80,12 +80,11 @@ public class ATMSystem {
         //创建一个账户对象，用与后期封装帐户信息
         Account account=new Account();
         String userName="";
+        //录入这个账户的信息，添加到账户对象
+        System.out.println("请输入用户名：");
+        userName=sc.next();
+        account.setUserName(userName);
         while (true) {
-            //录入这个账户的信息，添加到账户对象
-            System.out.println("请输入用户名：");
-            userName=sc.next();
-
-            account.setUserName(userName);
             System.out.println("请输入密码：");
             String passWord=sc.next();
             System.out.println("请再次输入密码：");
