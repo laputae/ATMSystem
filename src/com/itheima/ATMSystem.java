@@ -1,4 +1,5 @@
 package com.itheima;
+import javax.sound.midi.Soundbank;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ATMSystem {
                         //登录成功
                         System.out.println("恭喜您，"+acc.getUserName()+"先生/女士进入系统，您的卡号是："+acc.getCardId());
                         //查询，转账，取款
-                        showUserCommand(sc);
+                        showUserCommand(sc,acc);
                         //break;
                     } else {
                         System.out.println("您输入的密码有误");
@@ -72,7 +73,7 @@ public class ATMSystem {
         }
     }
 
-    private static void showUserCommand(Scanner sc) {
+    private static void showUserCommand(Scanner sc, Account acc) {
         while (true) {
             System.out.println("================用户操作页================");
             System.out.println("1、查询账户");
@@ -86,10 +87,12 @@ public class ATMSystem {
             int command=sc.nextInt();
             switch (command) {
                 case 1:
-                    //查询
+                    //查询(展示用户信息)
+                    showAccount(acc);
                     break;
                 case 2:
                     //存款
+
                     break;
                 case 3:
                     //取款
@@ -102,7 +105,8 @@ public class ATMSystem {
                     break;
                 case 6:
                     //退出
-                    break;
+                    System.out.println("退出成功，欢迎下次光临");
+                    return ;    //停止当前方法
                 case 7:
                     //注销账户
                     break;
@@ -110,6 +114,18 @@ public class ATMSystem {
                     System.out.println("您输入的操作不正确");
             }
         }
+    }
+
+    /**
+     * 展示账户信息
+     * @param acc 账户对象
+     */
+    private static void showAccount(Account acc) {
+        System.out.println("===================当前账户信息如下===================");
+        System.out.println("卡号："+acc.getCardId());
+        System.out.println("姓名："+acc.getUserName());
+        System.out.println("余额："+acc.getMoney());
+        System.out.println("限额："+acc.getQuotaMoney());
     }
 
     /**
