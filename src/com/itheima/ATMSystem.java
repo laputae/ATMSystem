@@ -122,7 +122,6 @@ public class ATMSystem {
 
     /**
      * 修改账户密码
-     *
      * @param sc  扫描器
      * @param acc 当前账户对象
      */
