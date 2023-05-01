@@ -144,7 +144,7 @@ public class ATMSystem {
             }
             return true;
         }
-        System.out.println("您输入的命令不正确");
+        System.out.println("您没有销户");
         return false;
     }
 
