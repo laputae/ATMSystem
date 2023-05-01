@@ -93,7 +93,7 @@ public class ATMSystem {
                     break;
                 case 2:
                     //存款
-
+                    depositMoney(acc, sc);
                     break;
                 case 3:
                     //取款
@@ -115,6 +115,21 @@ public class ATMSystem {
                     System.out.println("您输入的操作不正确");
             }
         }
+    }
+
+    /**
+     * 存钱
+     * @param acc 当前账户对象
+     * @param sc 扫描器
+     */
+    private static void depositMoney(Account acc, Scanner sc) {
+        System.out.println("===========================用户存钱操作===========================");
+        System.out.println("请您输入存钱金额：");
+        double money=sc.nextDouble();
+        acc.setMoney(acc.getMoney()+money); //原来账户的钱加上现在存进去的钱
+        //由于Account对象是引用类型，在修改acc的金额时修改的是原来存在的acc，不用把修改后的acc再加进accounts集合
+        System.out.println("恭喜您存钱成功，当前账户信息如下：");
+        showAccount(acc);
     }
 
     /**
