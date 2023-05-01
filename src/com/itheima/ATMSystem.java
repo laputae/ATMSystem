@@ -97,6 +97,7 @@ public class ATMSystem {
                     break;
                 case 3:
                     //取款
+                    drawMoney(acc, sc);
                     break;
                 case 4:
                     //转账
@@ -113,6 +114,44 @@ public class ATMSystem {
                     break;
                 default:
                     System.out.println("您输入的操作不正确");
+            }
+        }
+    }
+
+    /**
+     * 取钱功能
+     * @param acc 账户对象
+     * @param sc 扫描器
+     */
+    private static void drawMoney(Account acc, Scanner sc) {
+        System.out.println("===========================用户取钱操作===========================");
+        // 1、判断是否足够100元
+        if(acc.getMoney()<100){
+            System.out.println("对不起，当前账户不够100元，不能取钱");
+            return ;
+        }
+
+        // 2、提示用户输入取钱金额
+        while (true) {
+            System.out.println("请您输入取钱金额：");
+            double money=sc.nextDouble();
+
+            // 3、判断取钱金额是否超过当次限额
+            if(money>acc.getQuotaMoney()){
+                System.out.println("对不起，您当前的取款金额超过当次限额，每次最多可取："+ acc.getQuotaMoney());
+            } else {
+                // 没有超过当次限额
+                // 4、是否超过账户总余额
+                if(money>acc.getMoney()){
+                    System.out.println("余额不足，您目前账户总余额是："+ acc.getMoney());
+                } else {
+                    System.out.println("恭喜您，取钱" + money+"元，成功！");
+                    // 更新余额
+                    acc.setMoney(acc.getMoney()-money);
+                    // 取钱结束
+                    showAccount(acc);
+                    return ;
+                }
             }
         }
     }
