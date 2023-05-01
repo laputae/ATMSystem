@@ -113,15 +113,12 @@ public class ATMSystem {
                     return;    //停止当前方法
                 case 7:
                     //注销账户
-                    System.out.println("请确认是否销户，请输入y或n。y(销户), n(不销户)");
-                    String rs = sc.next();
-                    if (rs.equals("y")) {//销户
-                        accounts.remove(acc);
-                        System.out.println("您的账户销户完成");
+                    if (deleteAccount(acc, sc, accounts)) {
+                        //销户成功，回到首页
+                        return;
                     } else {
-                        System.out.println("您输入的命令不正确");
+                        break;
                     }
-                    break;
                 default:
                     System.out.println("您输入的操作不正确");
             }
@@ -129,7 +126,31 @@ public class ATMSystem {
     }
 
     /**
+     * 销户功能
+     *
+     * @param acc
+     * @param sc
+     * @param accounts
+     */
+    private static boolean deleteAccount(Account acc, Scanner sc, ArrayList<Account> accounts) {
+        System.out.println("请确认是否销户，请输入y或n。y(销户), n(不销户)");
+        String rs = sc.next();
+        if (rs.equals("y")) {//销户
+            if (acc.getMoney() > 0) {
+                System.out.println("您的账户还有钱，无法销户");
+            } else {
+                accounts.remove(acc);
+                System.out.println("您的账户销户完成");
+            }
+            return true;
+        }
+        System.out.println("您输入的命令不正确");
+        return false;
+    }
+
+    /**
      * 修改账户密码
+     *
      * @param sc  扫描器
      * @param acc 当前账户对象
      */
