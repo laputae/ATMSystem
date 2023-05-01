@@ -135,16 +135,18 @@ public class ATMSystem {
     private static boolean deleteAccount(Account acc, Scanner sc, ArrayList<Account> accounts) {
         System.out.println("请确认是否销户，请输入y或n。y(销户), n(不销户)");
         String rs = sc.next();
-        if (rs.equals("y")) {//销户
+        //销户
+        if (rs.equals("y")) {
             if (acc.getMoney() > 0) {
                 System.out.println("您的账户还有钱，无法销户");
             } else {
                 accounts.remove(acc);
                 System.out.println("您的账户销户完成");
+                return true;
             }
-            return true;
+        } else {
+            System.out.println("您没有销户，当前账户继续保留");
         }
-        System.out.println("您没有销户");
         return false;
     }
 
