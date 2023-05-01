@@ -126,7 +126,32 @@ public class ATMSystem {
      * @param acc 当前账户对象
      */
     private static void updatePassWord(Scanner sc, Account acc) {
+        System.out.println("==================用户密码修改==================");
+        while (true) {
+            System.out.println("请您输入当前密码：");
+            String passWord = sc.next();
+            // 判断密码是否正确
+            if (acc.getPassWord().equals(passWord)) {
+                while (true) {
+                    // 密码正确，输入新密码
+                    String newPassWord = sc.next();
 
+                    System.out.println("请您再次输入新密码;");
+                    String okPassWord = sc.next();
+
+                    if (newPassWord.equals(okPassWord)) {
+                        // 两次密码一致，可以修改
+                        acc.setPassWord(okPassWord);
+                        System.out.println("恭喜您，密码修改成功");
+                        return;
+                    } else {
+                        System.out.println("您输入的两次密码不一致，请重新输入");
+                    }
+                }
+            } else {
+                System.out.println("您输入的密码不正确");
+            }
+        }
     }
 
     /**
