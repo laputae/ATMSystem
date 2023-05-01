@@ -1,9 +1,8 @@
 package com.itheima;
 
-import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 
 public class ATMSystem {
@@ -36,7 +35,6 @@ public class ATMSystem {
 
     /**
      * 登录功能
-     *
      * @param accounts 全部账户的集合
      * @param sc       扫描器
      */
@@ -44,7 +42,7 @@ public class ATMSystem {
         System.out.println("===============系统登陆操作===============");
         //判断账户集合中是否存在账户，如果不存在账户，不能进行登陆操作
         if (accounts.size() == 0) {
-            System.out.printf("对比起，当前系统中无账户，请先开通账户，再来登录");
+            System.out.print("对比起，当前系统中无账户，请先开通账户，再来登录");
             return;
         }
 
@@ -107,6 +105,7 @@ public class ATMSystem {
                     break;
                 case 5:
                     //修改密码
+                    updatePassWord(sc, acc);
                     break;
                 case 6:
                     //退出
@@ -119,6 +118,16 @@ public class ATMSystem {
                     System.out.println("您输入的操作不正确");
             }
         }
+    }
+
+    /**
+     * 修改账户密码
+     *
+     * @param sc  扫描器
+     * @param acc 当前账户对象
+     */
+    private static void updatePassWord(Scanner sc, Account acc) {
+
     }
 
     /**
@@ -187,7 +196,6 @@ public class ATMSystem {
 
     /**
      * 取钱功能
-     *
      * @param acc 账户对象
      * @param sc  扫描器
      */
@@ -226,7 +234,6 @@ public class ATMSystem {
 
     /**
      * 存钱
-     *
      * @param acc 当前账户对象
      * @param sc  扫描器
      */
@@ -242,7 +249,6 @@ public class ATMSystem {
 
     /**
      * 展示账户信息
-     *
      * @param acc 账户对象
      */
     private static void showAccount(Account acc) {
@@ -255,7 +261,6 @@ public class ATMSystem {
 
     /**
      * 用户开户功能的实现
-     *
      * @param accounts 接收的账户集合
      */
     private static void register(ArrayList<Account> accounts, Scanner sc) {
@@ -295,7 +300,6 @@ public class ATMSystem {
 
     /**
      * 为账户生成与其他账户卡号不同的八位随机账号
-     *
      * @return
      */
     private static String getRandomCardId(ArrayList<Account> accounts) {
@@ -314,6 +318,13 @@ public class ATMSystem {
         }
     }
 
+    /**
+     * 通过卡号查找账户对象
+     *
+     * @param cardId
+     * @param accounts
+     * @return
+     */
     public static Account getAccountByCardId(String cardId, ArrayList<Account> accounts) {
         for (int i = 0; i < accounts.size(); i++) {
             Account acc = accounts.get(i);
