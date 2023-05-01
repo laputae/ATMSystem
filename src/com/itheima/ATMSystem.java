@@ -42,7 +42,7 @@ public class ATMSystem {
         System.out.println("===============系统登陆操作===============");
         //判断账户集合中是否存在账户，如果不存在账户，不能进行登陆操作
         if (accounts.size() == 0) {
-            System.out.print("对比起，当前系统中无账户，请先开通账户，再来登录");
+            System.out.print("对不起，当前系统中无账户，请先开通账户，再来登录");
             return;
         }
 
@@ -106,13 +106,21 @@ public class ATMSystem {
                 case 5:
                     //修改密码
                     updatePassWord(sc, acc);
-                    break;
+                    return;
                 case 6:
                     //退出
                     System.out.println("退出成功，欢迎下次光临");
                     return;    //停止当前方法
                 case 7:
                     //注销账户
+                    System.out.println("请确认是否销户，请输入y或n。y(销户), n(不销户)");
+                    String rs = sc.next();
+                    if (rs.equals("y")) {//销户
+                        accounts.remove(acc);
+                        System.out.println("您的账户销户完成");
+                    } else {
+                        System.out.println("您输入的命令不正确");
+                    }
                     break;
                 default:
                     System.out.println("您输入的操作不正确");
