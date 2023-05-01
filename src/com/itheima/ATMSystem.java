@@ -163,6 +163,7 @@ public class ATMSystem {
             if (acc.getPassWord().equals(passWord)) {
                 while (true) {
                     // 密码正确，输入新密码
+                    System.out.println("请您输入新密码;");
                     String newPassWord = sc.next();
 
                     System.out.println("请您再次输入新密码;");
